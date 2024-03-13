@@ -1,8 +1,6 @@
 import allure
-import requests
 
-from links import Endpoints
-from main import MethodGenerate
+from main import *
 
 
 @allure.feature('Создание курьера')

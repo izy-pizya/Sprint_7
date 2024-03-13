@@ -4,7 +4,7 @@ import data_for_tests
 import pytest as pytest
 import requests
 
-from links import Endpoints
+from links import *
 
 
 @allure.feature('Создание заказа')

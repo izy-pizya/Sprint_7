@@ -2,7 +2,7 @@ import random
 import string
 import requests
 
-from links import Endpoints
+from links import *
 
 
 class MethodGenerate:

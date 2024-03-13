@@ -1,7 +1,7 @@
 import requests
 import allure
 
-from links import Endpoints
+from links import *
 
 
 @allure.feature('Список заказов')
