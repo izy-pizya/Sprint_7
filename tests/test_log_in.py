@@ -1,7 +1,8 @@
 import allure
+import requests
+
 from links import Endpoints
 from main import MethodGenerate
-import requests
 
 
 @allure.feature('Логин курьера')

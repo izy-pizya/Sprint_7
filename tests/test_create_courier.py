@@ -1,7 +1,8 @@
 import allure
+import requests
+
 from links import Endpoints
 from main import MethodGenerate
-import requests
 
 
 @allure.feature('Создание курьера')
@@ -44,17 +45,18 @@ class TestCreateCourier:
     @allure.title('Тест: запрос возвращает правильный код ответа')
     def test_create_courier_correct_response(self):
 
-        response = requests.post(Endpoints.CREATE_COURIER, data={"login": "test_login", "password": "test_password", "firstName": "John"})
-        assert response.status_code == 201
-
-    @allure.title('Тест: успешный запрос возвращает {"ok":true}')
-    def test_correct_response_of_create_courier_(self):
-
         methodgenerate = MethodGenerate()
-        login, password, first_name = methodgenerate.register_new_courier_and_return_login_password()
-        response = requests.post(Endpoints.CREATE_COURIER,
-                                 data={"login": login, "password": password, "firstName": first_name})
-        assert response.json() == {"ok": True}
+        login = methodgenerate.random_generation()
+        password = methodgenerate.random_generation()
+
+        payload = {
+            "login": login,
+            "password": password,
+        }
+
+        response = requests.post(Endpoints.CREATE_COURIER, data=payload)
+        message = '"ok":true'
+        assert response.status_code == 201 and message in response.text
 
     @allure.title('Тест: если одного из полей нет, запрос возвращает ошибку')
     def test_create_courier_miss_one_field(self):

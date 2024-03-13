@@ -1,13 +1,10 @@
 import json
-
 import allure
-
 import data_for_tests
 import pytest as pytest
+import requests
 
 from links import Endpoints
-from main import MethodGenerate
-import requests
 
 
 @allure.feature('Создание заказа')
