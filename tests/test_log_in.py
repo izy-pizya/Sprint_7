@@ -24,7 +24,8 @@ class TestLogIn:
     def test_courier_login_error_login(self):
 
         response = requests.post(Endpoints.LOGIN, data={"login": "fake_login", "password": "fake_password"})
-        assert response.status_code == 404
+        message = '"Учетная запись не найдена"'
+        assert response.status_code == 404 and message in response.text
 
     @allure.title('Тест: если какого-то поля нет, запрос возвращает ошибку')
     def test_courier_login_error_not_all_fields(self):
@@ -36,5 +37,6 @@ class TestLogIn:
     def test_courier_login_non_existent_user(self):
 
         response = requests.post(Endpoints.LOGIN, data={"login": "nonexistent_user", "password": "fake_password"})
-        assert response.status_code == 404
+        message = '"Учетная запись не найдена"'
+        assert response.status_code == 404 and message in response.text
 

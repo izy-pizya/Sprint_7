@@ -1,5 +1,7 @@
 import random
 import string
+
+import allure
 import requests
 
 from links import *
@@ -7,11 +9,13 @@ from links import *
 
 class MethodGenerate:
 
+    @allure.step("Random Generation")
     def random_generation(self):
         letters = string.ascii_lowercase
         random_string = ''.join(random.choice(letters) for i in range(10))
         return random_string
 
+    @allure.step("Register new courier and return login password")
     def register_new_courier_and_return_login_password(self):
         login_pass = []
 
@@ -25,7 +29,7 @@ class MethodGenerate:
             "firstName": first_name
         }
 
-        response = requests.post(Endpoints.REGISTER_URL, data=payload)
+        response = requests.post(Endpoints.CREATE_COURIER, data=payload)
 
         if response.status_code == 201:
             login_pass.append(login)
