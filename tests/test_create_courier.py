@@ -1,6 +1,6 @@
 import allure
 
-from main import *
+from helpers import *
 
 
 @allure.feature('Создание курьера')
